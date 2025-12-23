@@ -6,55 +6,55 @@
 
 @layer base {
   :root {
-    /* Premium Dark Theme - Je vends mon temps */
-    --background: 0 0% 4%;
-    --foreground: 0 0% 90%;
+    /* Noir Glacé Theme - Je vends mon temps */
+    --background: 210 15% 3%;
+    --foreground: 200 20% 92%;
 
-    --card: 0 0% 6%;
-    --card-foreground: 0 0% 90%;
+    --card: 210 12% 6%;
+    --card-foreground: 200 20% 92%;
 
-    --popover: 0 0% 6%;
-    --popover-foreground: 0 0% 90%;
+    --popover: 210 12% 6%;
+    --popover-foreground: 200 20% 92%;
 
-    --primary: 0 0% 75%;
-    --primary-foreground: 0 0% 4%;
+    --primary: 200 15% 78%;
+    --primary-foreground: 210 15% 3%;
 
-    --secondary: 0 0% 12%;
-    --secondary-foreground: 0 0% 90%;
+    --secondary: 210 10% 12%;
+    --secondary-foreground: 200 20% 92%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 55%;
+    --muted: 210 10% 15%;
+    --muted-foreground: 200 10% 55%;
 
-    --accent: 0 0% 20%;
-    --accent-foreground: 0 0% 90%;
+    --accent: 210 12% 20%;
+    --accent-foreground: 200 20% 92%;
 
     --destructive: 0 62% 30%;
-    --destructive-foreground: 0 0% 90%;
+    --destructive-foreground: 200 20% 92%;
 
-    --border: 0 0% 18%;
-    --input: 0 0% 18%;
-    --ring: 0 0% 75%;
+    --border: 210 12% 18%;
+    --input: 210 12% 18%;
+    --ring: 200 15% 78%;
 
     --radius: 1rem;
 
-    /* Custom Premium Colors */
-    --silver: 0 0% 75%;
-    --silver-light: 0 0% 90%;
-    --silver-dark: 0 0% 55%;
-    --deep-black: 0 0% 4%;
-    --card-black: 0 0% 8%;
-    --success: 145 60% 45%;
-    --warning: 45 90% 50%;
+    /* Custom Noir Glacé Colors */
+    --silver: 200 15% 78%;
+    --silver-light: 200 20% 92%;
+    --silver-dark: 200 10% 55%;
+    --deep-black: 210 15% 3%;
+    --card-black: 210 12% 8%;
+    --success: 165 60% 40%;
+    --warning: 45 85% 55%;
 
-    /* Gradients */
-    --gradient-silver: linear-gradient(135deg, hsl(0 0% 85%) 0%, hsl(0 0% 65%) 50%, hsl(0 0% 75%) 100%);
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 10%) 0%, hsl(0 0% 6%) 100%);
-    --gradient-glow: radial-gradient(circle at center, hsl(0 0% 75% / 0.15) 0%, transparent 70%);
+    /* Gradients - Icy effect */
+    --gradient-silver: linear-gradient(135deg, hsl(200 20% 88%) 0%, hsl(200 15% 68%) 50%, hsl(200 18% 78%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(210 12% 10%) 0%, hsl(210 15% 5%) 100%);
+    --gradient-glow: radial-gradient(circle at center, hsl(200 20% 80% / 0.12) 0%, transparent 70%);
 
-    /* Shadows */
-    --shadow-premium: 0 8px 32px hsl(0 0% 0% / 0.4);
-    --shadow-glow: 0 0 40px hsl(0 0% 75% / 0.1);
-    --shadow-inner: inset 0 1px 0 hsl(0 0% 100% / 0.05);
+    /* Shadows - Icy glow */
+    --shadow-premium: 0 8px 32px hsl(210 20% 0% / 0.5);
+    --shadow-glow: 0 0 40px hsl(200 20% 80% / 0.08);
+    --shadow-inner: inset 0 1px 0 hsl(200 30% 100% / 0.04);
 
     /* Animations */
     --transition-slow: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -152,19 +152,19 @@
 
 @keyframes glow {
   from {
-    box-shadow: 0 0 20px hsl(0 0% 75% / 0.2);
+    box-shadow: 0 0 20px hsl(200 20% 80% / 0.15);
   }
   to {
-    box-shadow: 0 0 40px hsl(0 0% 75% / 0.4), 0 0 60px hsl(0 0% 75% / 0.2);
+    box-shadow: 0 0 40px hsl(200 20% 85% / 0.25), 0 0 60px hsl(200 15% 80% / 0.15);
   }
 }
 
 @keyframes border-glow {
   0%, 100% {
-    border-color: hsl(0 0% 35%);
+    border-color: hsl(200 10% 35%);
   }
   50% {
-    border-color: hsl(0 0% 65%);
+    border-color: hsl(200 15% 60%);
   }
 }
 
