@@ -9,6 +9,8 @@ import CreateTask from "./pages/CreateTask";
 import FocusMode from "./pages/FocusMode";
 import SessionComplete from "./pages/SessionComplete";
 import History from "./pages/History";
+import Badges from "./pages/Badges";
+import Payment from "./pages/Payment";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +28,8 @@ const App = () => (
             <Route path="/focus" element={<FocusMode />} />
             <Route path="/complete" element={<SessionComplete />} />
             <Route path="/history" element={<History />} />
+            <Route path="/badges" element={<Badges />} />
+            <Route path="/payment" element={<Payment />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Navigation />
