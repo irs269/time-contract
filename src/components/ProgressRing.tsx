@@ -38,9 +38,9 @@ export function ProgressRing({
         {/* Progress circle with gradient */}
         <defs>
           <linearGradient id="silverGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="hsl(0 0% 85%)" />
-            <stop offset="50%" stopColor="hsl(0 0% 65%)" />
-            <stop offset="100%" stopColor="hsl(0 0% 75%)" />
+            <stop offset="0%" stopColor="hsl(200 20% 90%)" />
+            <stop offset="50%" stopColor="hsl(200 15% 70%)" />
+            <stop offset="100%" stopColor="hsl(200 18% 80%)" />
           </linearGradient>
         </defs>
         <circle
@@ -55,7 +55,7 @@ export function ProgressRing({
           strokeDashoffset={offset}
           className="transition-all duration-1000 ease-out"
           style={{
-            filter: 'drop-shadow(0 0 8px hsl(0 0% 75% / 0.4))',
+            filter: 'drop-shadow(0 0 8px hsl(200 20% 80% / 0.35))',
           }}
         />
       </svg>
