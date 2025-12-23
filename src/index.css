@@ -120,7 +120,7 @@
   }
 
   .glow-silver {
-    box-shadow: 0 0 30px hsl(0 0% 75% / 0.2), 0 0 60px hsl(0 0% 75% / 0.1);
+    box-shadow: 0 0 30px hsl(200 20% 80% / 0.15), 0 0 60px hsl(200 15% 75% / 0.08);
   }
 
   .text-counter {
@@ -138,6 +138,67 @@
 
   .animate-border-glow {
     animation: border-glow 3s ease-in-out infinite;
+  }
+
+  /* Frost Effect */
+  .frost-border {
+    @apply relative;
+  }
+
+  .frost-border::after {
+    content: '';
+    @apply absolute inset-0 rounded-2xl pointer-events-none;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      hsl(200 30% 90% / 0.08) 25%,
+      hsl(200 40% 95% / 0.15) 50%,
+      hsl(200 30% 90% / 0.08) 75%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: frost-shimmer 4s ease-in-out infinite;
+  }
+
+  .frost-shimmer {
+    @apply absolute inset-0 pointer-events-none;
+    background: linear-gradient(
+      135deg,
+      transparent 20%,
+      hsl(200 40% 95% / 0.05) 40%,
+      hsl(190 50% 90% / 0.1) 50%,
+      hsl(200 40% 95% / 0.05) 60%,
+      transparent 80%
+    );
+    background-size: 300% 300%;
+    animation: shimmer-move 6s ease-in-out infinite;
+  }
+
+  .frost-particles {
+    @apply absolute inset-0 pointer-events-none overflow-hidden rounded-2xl;
+  }
+
+  .frost-particles::before,
+  .frost-particles::after {
+    content: '';
+    @apply absolute w-1 h-1 rounded-full;
+    background: hsl(200 40% 95% / 0.6);
+    box-shadow: 
+      20px 30px 0 hsl(200 40% 95% / 0.4),
+      60px 15px 0 hsl(200 40% 95% / 0.3),
+      100px 40px 0 hsl(200 40% 95% / 0.5),
+      140px 20px 0 hsl(200 40% 95% / 0.35),
+      180px 35px 0 hsl(200 40% 95% / 0.45),
+      220px 10px 0 hsl(200 40% 95% / 0.3),
+      260px 45px 0 hsl(200 40% 95% / 0.4),
+      300px 25px 0 hsl(200 40% 95% / 0.35);
+    animation: frost-drift 8s linear infinite;
+  }
+
+  .frost-particles::after {
+    top: 50%;
+    animation-delay: -4s;
+    animation-direction: reverse;
   }
 }
 
@@ -194,4 +255,39 @@
 
 .animate-count-up {
   animation: count-up 0.6s ease-out forwards;
+}
+
+@keyframes frost-shimmer {
+  0%, 100% {
+    background-position: 200% 0;
+  }
+  50% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes shimmer-move {
+  0%, 100% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+}
+
+@keyframes frost-drift {
+  0% {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(320px);
+    opacity: 0;
+  }
 }
