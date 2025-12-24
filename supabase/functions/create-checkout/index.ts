@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
-import Stripe from "https://esm.sh/stripe@14.21.0";
+import Stripe from "https://esm.sh/stripe@18.5.0";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.57.2";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -19,17 +20,44 @@ serve(async (req) => {
       throw new Error("Payment service not configured");
     }
 
+    // Initialize Supabase client
+    const supabaseClient = createClient(
+      Deno.env.get("SUPABASE_URL") ?? "",
+      Deno.env.get("SUPABASE_ANON_KEY") ?? ""
+    );
+
+    // Get the authenticated user
+    const authHeader = req.headers.get("Authorization");
+    if (!authHeader) {
+      throw new Error("No authorization header");
+    }
+
+    const token = authHeader.replace("Bearer ", "");
+    const { data: userData, error: userError } = await supabaseClient.auth.getUser(token);
+    
+    if (userError || !userData.user) {
+      throw new Error("User not authenticated");
+    }
+
+    const user = userData.user;
+    console.log("Creating checkout for user:", user.email);
+
     const stripe = new Stripe(stripeKey, {
-      apiVersion: "2023-10-16",
+      apiVersion: "2025-08-27.basil",
     });
 
-    const { priceId } = await req.json();
-    console.log("Creating checkout session for:", priceId);
+    // Check if customer already exists
+    let customerId;
+    if (user.email) {
+      const customers = await stripe.customers.list({ email: user.email, limit: 1 });
+      if (customers.data.length > 0) {
+        customerId = customers.data[0].id;
+        console.log("Using existing customer:", customerId);
+      }
+    }
 
-    // Create or get the product and price
-    let price;
-    
     // Check if we already have a lifetime access price
+    let price;
     const existingPrices = await stripe.prices.list({
       lookup_keys: ["lifetime_access"],
       limit: 1,
@@ -61,7 +89,8 @@ serve(async (req) => {
 
     // Create checkout session
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ["card"],
+      customer: customerId,
+      customer_email: customerId ? undefined : user.email,
       line_items: [
         {
           price: price.id,
@@ -72,6 +101,7 @@ serve(async (req) => {
       success_url: `${origin}/?payment=success`,
       cancel_url: `${origin}/payment?cancelled=true`,
       metadata: {
+        user_id: user.id,
         product: "lifetime_access",
       },
     });
