@@ -1,18 +1,19 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import { Home, Clock, History } from 'lucide-react';
+import { Home, Clock, History, Settings } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const navItems = [
   { to: '/', icon: Home, label: 'Dashboard' },
   { to: '/create', icon: Clock, label: 'Vendre' },
   { to: '/history', icon: History, label: 'Historique' },
+  { to: '/settings', icon: Settings, label: 'Paramètres' },
 ];
 
 export function Navigation() {
   const location = useLocation();
   
-  // Hide navigation on focus page
-  if (location.pathname === '/focus') {
+  // Hide navigation on focus page and auth page
+  if (location.pathname === '/focus' || location.pathname === '/auth') {
     return null;
   }
 
@@ -25,7 +26,7 @@ export function Navigation() {
             to={to}
             className={({ isActive }) =>
               cn(
-                'flex flex-col items-center gap-1 px-4 py-2 rounded-xl transition-all duration-300',
+                'flex flex-col items-center gap-1 px-3 py-2 rounded-xl transition-all duration-300',
                 isActive
                   ? 'text-silver-light'
                   : 'text-muted-foreground hover:text-silver'
