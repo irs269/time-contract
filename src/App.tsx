@@ -15,6 +15,7 @@ import SessionComplete from "./pages/SessionComplete";
 import History from "./pages/History";
 import Badges from "./pages/Badges";
 import Payment from "./pages/Payment";
+import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -63,6 +64,11 @@ const App = () => (
               <Route path="/payment" element={
                 <ProtectedRoute>
                   <Payment />
+                </ProtectedRoute>
+              } />
+              <Route path="/settings" element={
+                <ProtectedRoute>
+                  <Settings />
                 </ProtectedRoute>
               } />
               <Route path="*" element={<NotFound />} />
